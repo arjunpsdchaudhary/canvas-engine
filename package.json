@@ -21,12 +21,13 @@
     "dist"
   ],
   "scripts": {
-  "build": "tsdown",
-  "dev": "tsdown --watch",
-  "test": "vitest run",
-  "typecheck": "tsc --noEmit",
-  "prepare": "npm run build"
-},
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp",
+    "prepublishOnly": "npm run build"
+  },
   "devDependencies": {
     "@types/node": "^26.6.5",
     "bumpp": "^12.3.0",
