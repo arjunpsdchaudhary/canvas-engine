@@ -1,10 +1,15 @@
-let sequence = 0;
 
-/** Framework-independent ids. Pass a custom generator to Editor for deterministic tests. */
+/**
+ * Framework-independent ID generation.
+ * Each editor instance receives its own sequence.
+ */
 export type IdGenerator = (prefix: string) => string;
 
-export const createId: IdGenerator = (prefix) => {
-  sequence += 1;
-  const random = Math.random().toString(36).slice(2, 9);
-  return `${prefix}_${Date.now().toString(36)}_${sequence.toString(36)}_${random}`;
-};
+export function createSequentialIdGenerator(): IdGenerator {
+  let sequence = 0;
+
+  return (prefix) => {
+    sequence += 1;
+    return `${prefix}_${sequence.toString(36)}`;
+  };
+}

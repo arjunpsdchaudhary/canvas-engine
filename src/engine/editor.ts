@@ -1,5 +1,5 @@
 import { CommandManager, createStateCommand, type Command } from "./commands";
-import { createId, type IdGenerator } from "./ids";
+import { createSequentialIdGenerator, type IdGenerator } from "./ids";
 import { assertDocumentInvariants, cloneValue } from "./invariants";
 import { defaultLayer, nextLayerOrder, orderedLayers, orderedShapes } from "./layers";
 import { silentLogger, type Logger } from "./logger";
@@ -33,7 +33,7 @@ export class Editor {
 
   constructor(options: EditorOptions = {}) {
     this.registry = options.registry ?? createDefaultShapeTypeRegistry();
-    this.ids = options.ids ?? createId;
+    this.ids = options.ids ?? createSequentialIdGenerator();
     this.logger = options.logger ?? silentLogger;
     const layerId = this.ids("layer");
     const initial = options.document ?? {
