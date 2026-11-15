@@ -3,4 +3,4 @@ export function fn() {
   return 'Hello, tsdown!'
 }
 
-fn()
+export * from "./engine/editor";
